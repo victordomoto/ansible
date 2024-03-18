@@ -1,0 +1,6 @@
+---
+- hosts: vm-local
+  become: true
+  roles:
+    - install_k8s_tools
+    - configure_k8s_tools
