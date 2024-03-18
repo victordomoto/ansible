@@ -1,0 +1,39 @@
+---
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - docker
+    - curl
+    - apt-transport-https
+    - gnupg
+    - lsb-release
+
+- name: Install kind
+  shell: >
+    curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind
+    && chmod +x ./kind
+    && sudo mv ./kind /usr/local/bin/kind
+  args:
+    executable: /bin/bash
+
+- name: Install kubectl
+  apt:
+    name: kubectl
+    state: present
+
+- name: Install kubeadm
+  apt:
+    name: kubeadm
+    state: present
+    
+- name: Install kubelet
+  apt:
+    name: kubelet
+    state: present
+
+- name: Install containerd.io
+  apt:
+    name: containerd.io
+    state: present
